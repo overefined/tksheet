@@ -6092,16 +6092,10 @@ class MainTable(tk.Canvas):
         return False
 
     def _manage_scroll_bars(self, can_height: float, can_width: float) -> None:
+        # Always keep the horizontal scrollbar visible when enabled.
+        # Only show if not disabled and there's enough height to render it.
         if (
-            self.PAR.ops.auto_resize_row_index is not True
-            and can_width >= self.col_positions[-1] + self.PAR.ops.empty_horizontal
-            and self.PAR.xscroll_showing
-        ):
-            self.PAR.xscroll.grid_remove()
-            self.PAR.xscroll_showing = False
-        elif (
-            can_width < self.col_positions[-1] + self.PAR.ops.empty_horizontal
-            and not self.PAR.xscroll_showing
+            not self.PAR.xscroll_showing
             and not self.PAR.xscroll_disabled
             and can_height > 40
         ):
