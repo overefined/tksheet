@@ -3858,6 +3858,7 @@ class MainTable(tk.Canvas):
         self.xview(*args)
         if self.show_header:
             self.CH.xview(*args)
+        self.fix_views()
         self.main_table_redraw_grid_and_text(redraw_header=True, redraw_row_index=False)
         if move_synced:
             self.x_move_synced_scrolls(*args, use_scrollbar=True)
@@ -3866,6 +3867,7 @@ class MainTable(tk.Canvas):
         self.yview(*args)
         if self.show_index:
             self.RI.yview(*args)
+        self.fix_views()
         self.main_table_redraw_grid_and_text(redraw_header=False, redraw_row_index=True)
         if move_synced:
             self.y_move_synced_scrolls(*args, use_scrollbar=True)
